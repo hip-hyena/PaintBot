@@ -1,0 +1,4 @@
+node_modules
+.env
+storage.sqlite3
+static/graffitis/**

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link href="css/main.css?4" rel="stylesheet" media="screen">
+<body>
+  <div id="app">
+    <main id="main">
+      <header id="header">
+        <form id="title-form"><input id="title" type="text" enterkeyhint="done" placeholder="Untitled Graffiti"/></form>
+        <div id="userlist"></div>
+      </header>
+      <div id="board">
+        <canvas id="canvas"></canvas>
+        <canvas id="scratch"></canvas>
+      </div>
+      <div id="toolbar">
+        <div id="options" class="is-hidden">
+          <div class="slider is-width">
+            <input id="tool-resizer" type="range" min="2" max="80" step="any">
+          </div>
+          <div class="slider is-opacity">
+            <input id="tool-opacity" type="range" min="5" max="100" step="any">
+          </div>
+        </div>
+      </div>
+      <div id="palette"></div>
+      <div id="resizer-wrapper" class="slider is-width is-hidden">
+        <input id="resizer" type="range" min="2" max="80" step="any">
+      </div>
+      <div></div>
+    </main>
+    <div id="extpalette">
+      <div id="picker" class="is-hidden"></div>
+    </div>
+  </div>
+  <div id="scroll-hack"></div>
+  <script>Telegram.WebApp.ready();</script>
+  <script src="js/app.js?17"></script>
+</body>
+</html>

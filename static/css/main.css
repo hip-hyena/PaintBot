@@ -1,0 +1,392 @@
+*, *::before, *::after {
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  height: -webkit-fill-available;
+}
+
+body {
+  font: 14px/20px Roboto, -apple-system, BlinkMacSystemFont, "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
+  color: #222;
+  color: var(--tg-theme-text-color);
+  
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  overflow: hidden;
+
+  background: #fff;
+  background: var(--tg-theme-bg-color);
+}
+
+input {
+  font: 14px/20px Roboto, -apple-system, BlinkMacSystemFont, "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
+  color: #222;
+  color: var(--tg-theme-text-color);
+}
+
+#app {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+main {
+  width: 100%;
+  min-height: 430px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.is-tdesktop main { /* TDesktop uses very small (expanded) height, so we shrink the main panel to fit palette */
+  min-height: 415px;
+}
+
+#header {
+  width: calc(100% - 24px);
+  display: flex;
+  margin-bottom: -5px;
+}
+
+#title-form {
+  flex: 1;
+  display: flex;
+}
+#title {
+  flex: 1;
+  border: none;
+  border-radius: 0px;
+  background: transparent;
+  outline: none !important;
+}
+#title:focus-visible {
+  border-bottom: 2px solid var(--tg-theme-text-color);
+  margin-bottom: -2px;
+}
+
+#userlist {
+  display: flex;
+  align-items: center;
+}
+.userpic {
+  margin-left: 4px;
+  font-size: 12px;
+  line-height: 20px;
+  padding: 0px 4px;
+  border-radius: 4px;
+  height: fit-content;
+}
+
+#board {
+  position: relative;
+  background: #fff;
+  border: 2px solid var(--tg-theme-secondary-bg-color);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+#canvas, #scratch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#toolbar, #palette {
+  height: 44px;
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+}
+#toolbar {
+  position: relative;
+}
+#extpalette {
+  position: relative;
+  background-image: url(../palette.png);
+  width: calc(100% - 24px);
+  max-height: 400px;
+  flex: 1;
+  background-size: 100% 100%;
+  margin: 0 0 12px 0;
+  border-radius: 5px;
+}
+.is-tdesktop #extpalette {
+  margin-bottom: 8px;
+}
+#pcanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+#picker {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  margin-left: -8px;
+  margin-top: -8px;
+  transition: width 0.3s, height 0.3s, margin 0.3s, transform 0.3s;
+}
+/*#picker:before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -1px;
+  width: 2px;
+  height: 0px;
+  background: currentColor;
+  display: block;
+  transition: height 0.3s;
+}*/
+#picker.is-active {
+  transform: scale(1.4);
+}
+#picker.is-active.is-touch {
+  width: 32px;
+  height: 32px;
+  margin-left: -16px;
+  margin-top: -16px;
+  transform: translateY(-60px);
+}
+/*#picker.is-active.is-touch:before {
+  height: 60px;
+}*/
+.slider {
+  position: relative;
+  height: 44px;
+}
+#resizer-wrapper {
+  width: 90%;
+}
+
+/* Hacky solution */
+#resizer-wrapper.slider.is-width:before {
+  border-right: calc(90vw - 24px) solid #5a5a5a;
+}
+#options .slider.is-width:before {
+  border-right: calc(100vw - 75px) solid #5a5a5a;
+}
+
+.slider.is-width:before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  width: 0px;
+  left: 12px;
+  /* background: #fff; */
+  /* border-left: 2px solid #fff; */
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  /* border-top-left-radius: 9px;*/
+}
+.slider.is-opacity:before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: -1px;
+  right: -1px;
+  bottom: 8px;
+  border-radius: 15px;
+  background: #eee url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" fill-opacity=".25" ><rect x="200" width="200" height="200" /><rect y="200" width="200" height="200" /></svg>');
+  background-size: 11.5px 11.5px;
+  z-index: -1;
+}
+.slider input {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin: auto;
+  -webkit-appearance: none;
+  appearance: none;
+  background: none;
+}
+.slider.is-width input:before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 9px;
+  bottom: 20px;
+  width: 0px;
+  border-left: 3px solid #5a5a5a;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  z-index: -1;
+}
+.slider input:after {
+  content: '';
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: -2px;
+  height: 28px;
+  border-right: 15px solid #5a5a5a;
+  border-top-right-radius: 28px;
+  border-bottom-right-radius: 28px;
+  margin: auto;
+  z-index: -1;
+}
+.slider.is-width input:after {
+  width: 0px;
+}
+.slider.is-opacity input:after {
+  left: -2px;
+  border: none;
+  background: linear-gradient(90deg, #0000001f 0%, var(--color) 95%);
+  border-radius: 28px;
+}
+.slider input::-webkit-slider-thumb {
+  background: #fafafa;
+  appearance: none;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+#options {
+  position: absolute;
+  margin-bottom: 9px;
+  bottom: 100%;
+  left: 10px;
+  right: 10px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  background: var(--tg-theme-secondary-bg-color);
+  border-radius: 8px;
+  padding: 10px 15px;
+  gap: 6px;
+  box-shadow: 0px 1px 2px #00000030;
+}
+#options:before {
+  content: "";
+  left: var(--arrow-pos);
+  margin-left: -20px;
+  bottom: -19px;
+  width: 0px;
+  height: 0px;
+  border: 10px solid transparent;
+  position: absolute;
+  border-top: 10px solid var(--tg-theme-secondary-bg-color);
+}
+#palette.is-hidden, #resizer-wrapper.is-hidden, #picker.is-hidden, #options.is-hidden {
+  display: none;
+}
+.button {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--tg-theme-button-color);
+  background-color: var(--tg-theme-secondary-bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.button[disabled] {
+  -webkit-tap-highlight-color: transparent;
+  filter: grayscale(80%);
+  opacity: 0.4;
+}
+.button.is-active:not(.is-color) {
+  color: var(--tg-theme-button-text-color);
+  background-color: var(--tg-theme-button-color);
+}
+.button.is-color.is-active:before {
+  content: '';
+  position: absolute;
+  width: 33px;
+  height: 33px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+}
+.button svg {
+  width: 24px;
+}
+
+.tooltip {
+  position: absolute;
+  padding: 0px 3px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #fff;
+  border-radius: 2px;
+  pointer-events: none;
+  transition: opacity 1s;
+}
+.tooltip.is-hidden {
+  opacity: 0;
+}
+
+.fill-anim {
+  position: absolute;
+  width: 280vw;
+  height: 280vw;
+  margin-left: -140vw;
+  margin-top: -140vw;
+  border-radius: 50%;
+  transform: scale(0.02);
+  transition: transform 0.4s;
+}
+.fill-anim.is-active {
+  transform: scale(1);
+}
+
+/* Telegram for Android requires this hack to disable swipe gestures over canvas */
+
+#scroll-hack {
+  display: none;
+}
+
+.is-scroll-hack-enabled body {
+  overflow: auto;
+}
+
+.is-scroll-hack-enabled #app {
+  position: fixed;
+  height: 100vh;
+}
+
+.is-scroll-hack-enabled #scroll-hack {
+  position: relative;
+  display: block;
+  width: 5000px;
+  height: 5000px;
+  /*background-image: url('https://global.discourse-cdn.com/standard17/uploads/threejs/original/2X/7/7a3584298ef470fe0aafc146c23d34523b045606.png');*/
+  opacity: 0.2;
+  pointer-events: none;
+}
