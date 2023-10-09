@@ -109,7 +109,7 @@ let activeColor = null;
 let lightnessRange = [];
 let activeTool = null;
 const toolSizes = {
-  brush: 12,
+  brush: 20,
   pbrush: 32,
   pen: 3,
   erase: 16,
@@ -722,7 +722,8 @@ function drawStroke(ctx, s) {
         console.log(sharpness);
       }
       
-      const d = (i == 0 || i == filtered.length - 1 ? 1 : Math.min(5, Math.min(i, filtered.length - i - 1) * 0.5)) * DP;
+      let d = (i == 0 || i == filtered.length - 1 ? 1 : Math.min(5, Math.min(i, filtered.length - i - 1) * 0.5)) * DP;
+      d *= s.size / 20;
       path[i] = [
         x + Math.cos(a0) * d, y + Math.sin(a0) * d,
         x + Math.cos(a1) * d, y + Math.sin(a1) * d,
