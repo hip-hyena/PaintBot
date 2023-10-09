@@ -51,7 +51,7 @@ That's all for configuration. Now you can run the server:
 node server.js
 ```
 
-If you're using `PM2`, you can add this app to the list of continuously running scripts:
+Or, if you're using `PM2`, you can add this app to the list of continuously running scripts:
 ```
 pm2 start --name YourBotName server.js
 pm2 save
