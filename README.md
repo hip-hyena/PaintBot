@@ -18,6 +18,8 @@ To create a collaborative board, select the "**New board**" option after typing 
 
 Unfortunately, Telegram does not provide (yet) a reliable way to prevent vertical swipe gestures from "leaking" to the Telegram client. This means that some touch gestures can be interpreted incorrectly and lead to expanding/closing Mini App instead of interacting with its elements. This is especially noticable on Android devices.
 
+To fix this issue (at least to some extent) I've tried to implement a somewhat hacky workaround (see `ENABLE_ANDROID_SCROLL_HACK` in `static/js/app.js`). Assign `false` to that constant if you wish to disable this workaround.
+
 ## Deployment
 
 The process of cloning this bot/app is rather straightforward. It's written in Node.js using Express framework and all data is stored in SQLite. This means that deployment does not require installation and configuration of an external database (but the source code can be modified to use it, of course).
