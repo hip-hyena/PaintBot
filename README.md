@@ -44,7 +44,7 @@ git clone https://github.com/hip-hyena/PaintBot.git
 
 Go to directory where you cloned the repository and install dependencies:
 ```
-cd ConveneBot
+cd PaintBot
 npm install
 ```
 
