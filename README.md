@@ -14,6 +14,16 @@ To create a graffiti, simply start the bot and select any of your group chats or
 
 To create a collaborative board, select the "**New board**" option after typing "`@PaintBot <BOARD TITLE>`" in any chat. It will publish a message with a link to a board in the chat, and any member of that chat will be able to join and see each others strokes in realtime. At any point you can save a snapshot of the current state of the board by pressing "Save snapshot".
 
+## Features
+
+1. Three different brushes (pen, round brush and wide brush) with unique styles (and an eraser).
+2. Brush width/opacity configuration (activated by tapping the tool button second time).
+3. Undo/redo history.
+4. Color picker with a custom-designed palette.
+5. Filling the canvas with one color by long-pressing.
+6. Collaborative editing support.
+7. All graffitis can be easily selected from the inline menu (by typing `@PaintBot` in any chat).
+
 ## Known issues
 
 Unfortunately, Telegram does not provide (yet) a reliable way to prevent vertical swipe gestures from "leaking" to the Telegram client. This means that some touch gestures can be interpreted incorrectly and lead to expanding/closing Mini App instead of interacting with its elements. This is especially noticable on Android devices.
